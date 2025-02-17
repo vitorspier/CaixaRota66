@@ -18,7 +18,7 @@ header_col1, header_col2 = st.columns([1, 7])  # Define a largura das colunas do
 
 # 📌 Insere a imagem no head1 (coluna 1)
 with header_col1:
-    st.image("arquivos/rota66.png", width=150)  # Substitua pelo nome correto da imagem
+    st.image("rota66.png", width=150)  # Substitua pelo nome correto da imagem
 
 # 📌 Insere o título no head2 (coluna 2)
 with header_col2:
