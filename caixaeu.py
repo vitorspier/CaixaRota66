@@ -21,7 +21,7 @@ if 'transactions' not in st.session_state:
 # Criar uma linha separada para imagem + título
 header_col1, header_col2 = st.columns([1, 7])
 with header_col1:
-    st.image("arquivos/rota66.png", width=150)
+    st.image("rota66.png", width=150)
 with header_col2:
     st.markdown(
         """
