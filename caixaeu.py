@@ -12,17 +12,16 @@ def moeda(x, pos):
     return f"R${x:,.2f}"
 
 
-# 📌 Configurar a página para modo Wide
+# Configurar a página para modo wide
 st.set_page_config(page_title="Caixa - IA Previsão", layout="wide")
 
-# 📌 Inicializa 'transactions' no estado da sessão, se ainda não existir
 if 'transactions' not in st.session_state:
     st.session_state['transactions'] = []
 
-# 📌 Criar uma linha separada para imagem + título
+# Criar uma linha separada para imagem + título
 header_col1, header_col2 = st.columns([1, 7])
 with header_col1:
-    st.image("rota66.png", width=150)
+    st.image("arquivos/rota66.png", width=150)
 with header_col2:
     st.markdown(
         """
@@ -40,12 +39,12 @@ with header_col2:
 
 st.markdown("---")
 
-# 📌 Layout com duas colunas para as contagens dos caixas
+# Layout com duas colunas para as contagens dos caixas
 col1, col2 = st.columns(2)
 
 # Caixa Principal - Contagem
 with col1:
-    st.subheader("📌 Caixa Principal (Contagem)")
+    st.subheader(" Caixa Principal (Contagem)")
     moedas_principal = [st.number_input(f"Moedas de R${v:,.2f} (Principal)", min_value=0, step=1) for v in
                         [0.05, 0.10, 0.25, 0.50, 1.00]]
     notas_principal = [st.number_input(f"Notas de R${v:,.2f} (Principal)", min_value=0, step=1) for v in
@@ -56,7 +55,7 @@ with col1:
 
 # Caixa Secundário - Contagem
 with col2:
-    st.subheader("📌 Caixa Secundário (Contagem)")
+    st.subheader(" Caixa Secundário (Contagem)")
     moedas_secundario = [st.number_input(f"Moedas de R${v:,.2f} (Secundário)", min_value=0, step=1) for v in
                          [0.05, 0.10, 0.25, 0.50, 1.00]]
     notas_secundario = [st.number_input(f"Notas de R${v:,.2f} (Secundário)", min_value=0, step=1) for v in
@@ -65,7 +64,7 @@ with col2:
                        sum(q * v for q, v in zip(notas_secundario, [2, 5, 10, 20, 50, 100, 200]))
     st.write(f"💰 **Total do Caixa Secundário: R${total_secundario:,.2f}**")
 
-# 📌 Botão para salvar o registro de contagem
+# Botão para salvar o registro de contagem
 if st.button("💾 Salvar Registro de Contagem"):
     transacao = {
         'data': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
@@ -80,7 +79,7 @@ if st.button("💾 Salvar Registro de Contagem"):
 
 st.markdown("---")
 
-# 📌 Seção de Transferência de Valores
+# Seção de Transferência de Valores
 st.subheader("🔄 Transferência de Valores entre Caixas")
 transferencia_direcao = st.radio("Selecione a direção da transferência",
                                  ("Principal para Secundário", "Secundário para Principal"))
@@ -101,7 +100,7 @@ if st.button("💱 Efetuar Transferência"):
 
 st.markdown("---")
 
-# 📌 Exibir Histórico e Gráfico com Previsão (últimos 30 dias)
+# Exibir Histórico e Gráfico com Previsão (últimos 30 dias)
 if st.button("📊 Ver Histórico e IA"):
     st.subheader("📈 Histórico e Previsão do Caixa (últimos 30 dias)")
 
@@ -146,7 +145,7 @@ if st.button("📊 Ver Histórico e IA"):
                 dias_futuros_num = np.array([d.timetuple().tm_yday for d in dias_futuros]).reshape(-1, 1)
                 forecast_values = modelo.predict(dias_futuros_num)
             else:
-                st.warning("📌 Poucos dados de contagem para gerar previsão com IA. Usando tendência linear simples.")
+                st.warning(" Poucos dados de contagem para gerar previsão com IA. Usando tendência linear simples.")
                 forecast_model_label = "Previsão IA (tendência linear)"
                 # Regressão linear simples com polyfit
                 coeffs = np.polyfit(df_contagem['dia'], y, 1)
