@@ -22,7 +22,7 @@ st.set_page_config(page_title="Caixa - IA Previsão", layout="wide")
 # Cabeçalho com imagem e título
 header_col1, header_col2 = st.columns([1, 7])
 with header_col1:
-    st.image("arquivos/rota66.png", width=150)  # ajuste o caminho se necessário
+    st.image("rota66.png", width=150)  # ajuste o caminho se necessário
 with header_col2:
     st.markdown(
         """
@@ -135,3 +135,4 @@ if st.session_state['transactions']:
     st.dataframe(df_hist, use_container_width=True)
 else:
     st.info("Nenhum registro encontrado.")
+
